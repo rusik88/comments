@@ -1860,27 +1860,34 @@ __webpack_require__.r(__webpack_exports__);
           id: 1
         }, {
           'label': "TEST2",
-          parent: 2
+          id: 2
         }, {
           'label': "TEST3",
-          parent: 3
+          id: 3
         }],
         1: [{
           'label': "TEST5",
-          id: 5
+          id: 4
         }, {
           'label': "TEST6",
-          id: 6
+          id: 5
         }, {
           'label': "TEST7",
-          id: 7
+          id: 6
         }],
         2: [{
           'label': "TEST8",
-          id: 8
+          id: 7
         }, {
           'label': "TEST9",
+          id: 8
+        }],
+        6: [{
+          'label': "TEST10",
           id: 9
+        }, {
+          'label': "TEST11",
+          id: 10
         }]
       },
       treeData: [{
@@ -1939,12 +1946,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "child",
   props: {
-    node: Object
-  }
+    node: Object,
+    treeData: Object
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -1979,12 +1987,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CommentsComponent",
   props: {
-    treeData: Array
+    treeData: Object
   },
   components: {
     CommentsChild: _CommentsChildComponent__WEBPACK_IMPORTED_MODULE_0__.default
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {// console.log(this.treeData[1]);
+  }
 });
 
 /***/ }),
@@ -38169,7 +38178,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("comments", { attrs: { "tree-data": _vm.treeData } })
+  return _c("comments", { attrs: { "tree-data": _vm.treeDataGroup } })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38194,14 +38203,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "node-tree" }, [
+  return _c("li", [
     _c("span", { staticClass: "label" }, [_vm._v(_vm._s(_vm.node.label))]),
     _vm._v(" "),
-    _vm.node.children && _vm.node.children.length
+    _vm.treeData[_vm.node.id] && _vm.treeData[_vm.node.id].length
       ? _c(
           "ul",
-          _vm._l(_vm.node.children, function(child) {
-            return _c("child", { attrs: { node: child } })
+          _vm._l(_vm.treeData[_vm.node.id], function(child) {
+            return _c("child", {
+              attrs: { node: child, treeData: _vm.treeData }
+            })
           }),
           1
         )
@@ -38235,15 +38246,17 @@ var render = function() {
     _c(
       "ul",
       { staticClass: "tree-list" },
-      _vm._l(_vm.treeData, function(item) {
+      _vm._l(_vm.treeData[0], function(item) {
         return _c("li", [
-          _c("span", [_vm._v(_vm._s(item.label))]),
+          _c("span", [_vm._v(_vm._s(item.label) + " - " + _vm._s(item.id))]),
           _vm._v(" "),
-          item.children && item.children.length
+          _vm.treeData[item.id] && _vm.treeData[item.id].length
             ? _c(
                 "ul",
-                _vm._l(item.children, function(child) {
-                  return _c("comments-child", { attrs: { node: child } })
+                _vm._l(_vm.treeData[item.id], function(child) {
+                  return _c("comments-child", {
+                    attrs: { node: child, treeData: _vm.treeData }
+                  })
                 }),
                 1
               )

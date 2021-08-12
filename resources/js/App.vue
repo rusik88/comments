@@ -1,5 +1,5 @@
 <template>
-    <comments :tree-data="treeData" ></comments>
+    <comments :tree-data="treeDataGroup" ></comments>
 </template>
 
 <script>
@@ -11,17 +11,21 @@
                     {
                         0: [
                             {'label': "TEST1", id: 1},
-                            {'label': "TEST2", parent: 2},
-                            {'label': "TEST3", parent: 3},
+                            {'label': "TEST2", id: 2},
+                            {'label': "TEST3", id: 3},
                         ],
                         1: [
-                            {'label': "TEST5", id: 5},
-                            {'label': "TEST6", id: 6},
-                            {'label': "TEST7", id: 7},
+                            {'label': "TEST5", id: 4},
+                            {'label': "TEST6", id: 5},
+                            {'label': "TEST7", id: 6},
                         ],
                         2: [
-                            {'label': "TEST8", id: 8},
-                            {'label': "TEST9", id: 9},
+                            {'label': "TEST8", id: 7},
+                            {'label': "TEST9", id: 8},
+                        ],
+                        6: [
+                            {'label': "TEST10", id: 9},
+                            {'label': "TEST11", id: 10},
                         ],
                     }
                 ,
