@@ -3,8 +3,8 @@
         <ul class="tree-list">
             <li v-for="item in treeData[0]">
                 <span>{{ item.label }} - {{ item.id }}</span>
-                <ul v-if="treeData[item.id] && treeData[item.id].length">
-                    <comments-child v-for="child in treeData[item.id]" :node="child" :treeData="treeData"></comments-child>
+                <ul v-if="treeData[item.id] && treeData[item.id].length && deep > counter">
+                    <comments-child v-for="child in treeData[item.id]" :key="child.id" :node="child" :treeData="treeData" :deep="deep" :counter="counter + 1"></comments-child>
                 </ul>
             </li>
         </ul>
@@ -17,13 +17,15 @@
     export default {
         name: "CommentsComponent",
         props: {
-            treeData: Object
+            treeData: Object,
+            deep: Number,
+            counter: Number,
         },
         components: {
             CommentsChild
         },
         mounted() {
-           // console.log(this.treeData[1]);
+            //console.log(this.counter, this.deep)
         }
 
     }

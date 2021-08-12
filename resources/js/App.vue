@@ -1,5 +1,5 @@
 <template>
-    <comments :tree-data="treeDataGroup" ></comments>
+    <comments :tree-data="treeDataGroup" :deep="deep" :counter="counter"></comments>
 </template>
 
 <script>
@@ -7,6 +7,8 @@
     export default {
         data: function() {
             return {
+                deep: 2,
+                counter: 1,
                 treeDataGroup:
                     {
                         0: [
@@ -64,7 +66,7 @@
             Comments
         },
         mounted() {
-            console.log(this.treeDataGroup);
+
         }
     }
 </script>

@@ -1854,6 +1854,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      deep: 2,
+      counter: 1,
       treeDataGroup: {
         0: [{
           'label': "TEST1",
@@ -1920,9 +1922,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Comments: _components_CommentsComponent__WEBPACK_IMPORTED_MODULE_0__.default
   },
-  mounted: function mounted() {
-    console.log(this.treeDataGroup);
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -1950,9 +1950,13 @@ __webpack_require__.r(__webpack_exports__);
   name: "child",
   props: {
     node: Object,
-    treeData: Object
+    treeData: Object,
+    deep: Number,
+    counter: Number
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    console.log();
+  }
 });
 
 /***/ }),
@@ -1987,12 +1991,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CommentsComponent",
   props: {
-    treeData: Object
+    treeData: Object,
+    deep: Number,
+    counter: Number
   },
   components: {
     CommentsChild: _CommentsChildComponent__WEBPACK_IMPORTED_MODULE_0__.default
   },
-  mounted: function mounted() {// console.log(this.treeData[1]);
+  mounted: function mounted() {//console.log(this.counter, this.deep)
   }
 });
 
@@ -38178,7 +38184,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("comments", { attrs: { "tree-data": _vm.treeDataGroup } })
+  return _c("comments", {
+    attrs: {
+      "tree-data": _vm.treeDataGroup,
+      deep: _vm.deep,
+      counter: _vm.counter
+    }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38206,12 +38218,20 @@ var render = function() {
   return _c("li", [
     _c("span", { staticClass: "label" }, [_vm._v(_vm._s(_vm.node.label))]),
     _vm._v(" "),
-    _vm.treeData[_vm.node.id] && _vm.treeData[_vm.node.id].length
+    _vm.treeData[_vm.node.id] &&
+    _vm.treeData[_vm.node.id].length &&
+    _vm.deep > _vm.counter
       ? _c(
           "ul",
           _vm._l(_vm.treeData[_vm.node.id], function(child) {
             return _c("child", {
-              attrs: { node: child, treeData: _vm.treeData }
+              key: child.id,
+              attrs: {
+                node: child,
+                treeData: _vm.treeData,
+                deep: _vm.deep,
+                counter: _vm.counter + 1
+              }
             })
           }),
           1
@@ -38250,12 +38270,20 @@ var render = function() {
         return _c("li", [
           _c("span", [_vm._v(_vm._s(item.label) + " - " + _vm._s(item.id))]),
           _vm._v(" "),
-          _vm.treeData[item.id] && _vm.treeData[item.id].length
+          _vm.treeData[item.id] &&
+          _vm.treeData[item.id].length &&
+          _vm.deep > _vm.counter
             ? _c(
                 "ul",
                 _vm._l(_vm.treeData[item.id], function(child) {
                   return _c("comments-child", {
-                    attrs: { node: child, treeData: _vm.treeData }
+                    key: child.id,
+                    attrs: {
+                      node: child,
+                      treeData: _vm.treeData,
+                      deep: _vm.deep,
+                      counter: _vm.counter + 1
+                    }
                   })
                 }),
                 1
