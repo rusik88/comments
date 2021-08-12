@@ -9,13 +9,16 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 
 import Vuex from 'vuex'
+import Vuemoment from 'vue-moment'
 import Vuelidate from 'vuelidate'
 import Store from './store/index'
+
 
 import App from './App.vue'
 
 Vue.use(Vuex)
 Vue.use(Vuelidate)
+Vue.use(Vuemoment);
 
 /**
  * The following block of code may be used to automatically register your
