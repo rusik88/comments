@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="vueDynamic">
-            
+
             <main class="py-4">
                 <div class="container">
                     <div class="row justify-content-center">
@@ -10,7 +10,7 @@
                                 <div class="card-header">Reviews</div>
                                 <div class="container-fluid">
                                     <div class="row">
-                                        
+
                                     </div>
                                 </div>
                                 <hr>
@@ -23,7 +23,7 @@
                 </div>
             </main>
         </div>
-        
+
     </div>
 </template>
 
@@ -32,11 +32,10 @@
     export default {
         data: function() {
             return {
-                deep: 5,
+                deep: 10,
                 counter: 1
             }
         },
-
         components: {
             Comments
         },

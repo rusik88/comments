@@ -16,18 +16,19 @@ class CommentsController extends AbstractApiController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        $comments = $this->reviewRepository->all();
+        $comments = $this->reviewRepository->all()->toArray();
         $commentsGroup = [];
         if(!empty($comments)) {
-            foreach($comments->toArray() as $comment) {
+            foreach($comments as $comment) {
                 $commentsGroup[$comment['parent_id']][] = $comment;
             }
         }
         $this->json['comments'] = $commentsGroup;
+
         return $this->displayData();
     }
 
