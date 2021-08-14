@@ -13,9 +13,7 @@ class CommentRepository implements RepositoryInterface {
      */
 
     public function all() {
-        $comments_main = Comment::where('parent_id', 0)->orderBy('id', 'DESC')->get();
-        $comments_children = Comment::where('parent_id', '<>', 0)->orderBy('id', 'ASC')->get();
-        return $comments_main->merge($comments_children);
+        return Comment::orderBy('id', 'DESC')->get(); 
     }
     
     /**

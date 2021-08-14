@@ -2357,6 +2357,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 comments = _context.sent;
+                console.log(comments);
 
                 try {
                   store.commit('setCommentsMutation', comments.data.comments);
@@ -2366,7 +2367,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(e);
                 }
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }

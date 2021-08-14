@@ -31,6 +31,7 @@ export default {
         async getCommentsAction(store) {
             store.commit('setLoadingMutation', true);
             const comments = await HTTP.get('comments');
+            console.log(comments);
             try {
                 store.commit('setCommentsMutation', comments.data.comments);
                 store.commit('setDeepMutation', comments.data.deep);

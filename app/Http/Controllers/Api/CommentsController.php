@@ -22,12 +22,23 @@ class CommentsController extends AbstractApiController
     public function index()
     {
         $comments = $this->reviewRepository->all()->toArray();
+        $commnetsChildren = [];
         $commentsGroup = [];
+
         if(!empty($comments)) {
+
             foreach($comments as $comment) {
+                if($comment['parent_id'] != 0) $commnetsChildren[$comment['id']] = $comment;
+                else $commentsGroup[$comment['parent_id']][] = $comment;
+            }
+
+            ksort($commnetsChildren);
+
+            foreach($commnetsChildren as $comment) {
                 $commentsGroup[$comment['parent_id']][] = $comment;
             }
         }
+
         $this->json['comments'] = $commentsGroup;
         $this->json['status'] = true;
         $this->json['deep'] = config('comment.deep');
