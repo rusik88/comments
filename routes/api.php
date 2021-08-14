@@ -19,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::resource('comments', 'App\Http\Controllers\Api\CommentsController')
-        ->only(['index']);
+        ->only(['index', 'store']);

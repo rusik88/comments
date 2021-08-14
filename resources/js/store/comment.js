@@ -4,42 +4,52 @@ import {HTTP} from '../http'
 
 export default {
     state: {
-        reviews: {},
-        loadingReview: true,
-        //message_success: false
+        comments: {},
+        loadingComment: true,
+        deep: 0,
+        message: false,
+        responseStatus: false
     },
     mutations: {
-        setReviewsMutation(state, payload) {
-            state.reviews = payload;
+        setCommentsMutation(state, payload) {
+            state.comments = payload;
+        },
+        setDeepMutation(state, payload) {
+            state.deep = payload;
         },
         setLoadingMutation(state, payload) {
-            state.loadingReview = payload;
+            state.loadingComment = payload;
         },
-        /*setMessageSuccess(state, payload) {
-            state.message_success = payload;
-        }*/
+        setMessage(state, payload) {
+            state.message = payload;
+        },
+        setResponswStatus(state, payload) {
+            state.responseStatus = payload;
+        }
     },
     actions: {
-        async getReviewsAction(store) {
+        async getCommentsAction(store) {
             store.commit('setLoadingMutation', true);
-            const reviews = await HTTP.get('comments');
-            console.log(reviews.data.comments);
+            const comments = await HTTP.get('comments');
             try {
-                store.commit('setReviewsMutation', reviews.data.comments);
+                store.commit('setCommentsMutation', comments.data.comments);
+                store.commit('setDeepMutation', comments.data.deep);
                 store.commit('setLoadingMutation', false);
             } catch(e) {
                 console.log(e);
             }
         },
-        async AddReviewAction(store, payload) {
-            const review = await HTTP.post('add-review', {
-                text: payload.text_val
+        async AddCommentAction(store, payload) {
+            const comment = await HTTP.post('comments', {
+                comment: payload.comment,
+                parent_id: payload.parent_id,
             })
             try {
-                store.dispatch('getReviewsAction')
-                store.commit('setMessageSuccess', 'Review was added')
+                store.dispatch('getCommentsAction')
+                store.commit('setMessage', comment.data.message)
+                store.commit('setResponswStatus', comment.data.status)
                 setTimeout(() => {
-                    store.commit('setMessageSuccess', false)
+                    store.commit('setMessage', false)
                 }, 2000)
             } catch(e) {
                 console.log(e);
@@ -47,14 +57,20 @@ export default {
         }
     },
     getters: {
-        getReviews(state) {
-            return state.reviews;
+        getComments(state) {
+            return state.comments;
         },
-        loadingReview(state) {
-            return state.loadingReview
+        loadingComment(state) {
+            return state.loadingComment
         },
-        /*getMessageSuccess(state) {
-            return state.message_success;
-        }*/
+        getMessage(state) {
+            return state.message;
+        },
+        getResponseStatus(state) {
+            return state.responseStatus;
+        },
+        getDeep(state) {
+            return state.deep;
+        }
     }
 }

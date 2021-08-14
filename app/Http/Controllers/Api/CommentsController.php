@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\AbstractApiController;
 use Illuminate\Http\Request;
 use App\Repositories\CommentRepository;
+use App\Http\Requests\Api\CommentRequest;
 
 class CommentsController extends AbstractApiController
 {
@@ -28,6 +29,8 @@ class CommentsController extends AbstractApiController
             }
         }
         $this->json['comments'] = $commentsGroup;
+        $this->json['status'] = true;
+        $this->json['deep'] = config('comment.deep');
 
         return $this->displayData();
     }
@@ -46,11 +49,16 @@ class CommentsController extends AbstractApiController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
-        //
+        return $this->addElement(
+            $request->all(),
+            $this->reviewRepository,
+            __('comment.add_success') , 
+            __('comment.add_error')
+        );
     }
 
     /**
