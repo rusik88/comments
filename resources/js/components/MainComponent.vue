@@ -13,9 +13,9 @@
                                 <hr>
                                 <addCommentForm :parent_id="0" />
                                 <hr>
-                                <div v-if="!loadingComment" class="card-body" >
+                                <div v-if="getPageLoaded" class="card-body" >
                                     <comments v-if="getDeep > 0"  :tree-data="getCommentsData" :deep="getDeep" :counter="counter"></comments>
-                                </div>
+                                </div> 
                                 <loading v-else></loading>
                             </div>
                         </div>
@@ -54,6 +54,9 @@
             },
             getDeep() {
                 return this.$store.getters.getDeep;
+            },
+            getPageLoaded() {
+                return this.$store.getters.getPageLoaded;
             },
         }
     }

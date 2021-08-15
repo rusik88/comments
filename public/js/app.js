@@ -1939,6 +1939,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getDeep: function getDeep() {
       return this.$store.getters.getDeep;
+    },
+    getPageLoaded: function getPageLoaded() {
+      return this.$store.getters.getPageLoaded;
     }
   }
 });
@@ -2014,6 +2017,10 @@ __webpack_require__.r(__webpack_exports__);
         });
         this.$v.comment.$model = '';
         this.$v.$reset();
+        var forms = document.querySelectorAll('.replyForm');
+        forms.forEach(function (form) {
+          form.classList.add('hide');
+        });
       }
     },
     closeForm: function closeForm(event) {
@@ -2358,6 +2365,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     loadingComment: true,
     deep: false,
     message: false,
+    pageLoaded: false,
     responseStatus: false
   },
   mutations: {
@@ -2375,6 +2383,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     setResponswStatus: function setResponswStatus(state, payload) {
       state.responseStatus = payload;
+    },
+    setPageLoaded: function setPageLoaded(state, payload) {
+      state.pageLoaded = payload;
     }
   },
   actions: {
@@ -2391,17 +2402,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 comments = _context.sent;
-                console.log(comments);
 
                 try {
                   store.commit('setCommentsMutation', comments.data.comments);
                   store.commit('setDeepMutation', comments.data.deep);
                   store.commit('setLoadingMutation', false);
+                  store.commit('setPageLoaded', true);
                 } catch (e) {
                   console.log(e);
                 }
 
-              case 6:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -2459,8 +2470,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return state.responseStatus;
     },
     getDeep: function getDeep(state) {
-      console.log('deep', state.deep);
       return state.deep;
+    },
+    getPageLoaded: function getPageLoaded(state) {
+      return state.pageLoaded;
     }
   }
 });
@@ -39833,7 +39846,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  !_vm.loadingComment
+                  _vm.getPageLoaded
                     ? _c(
                         "div",
                         { staticClass: "card-body" },

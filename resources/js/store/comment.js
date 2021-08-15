@@ -8,6 +8,7 @@ export default {
         loadingComment: true,
         deep: false,
         message: false,
+        pageLoaded: false,
         responseStatus: false
     },
     mutations: {
@@ -25,17 +26,20 @@ export default {
         },
         setResponswStatus(state, payload) {
             state.responseStatus = payload;
+        },
+        setPageLoaded(state, payload) {
+            state.pageLoaded = payload;
         }
     },
     actions: {
         async getCommentsAction(store) {
             store.commit('setLoadingMutation', true);
             const comments = await HTTP.get('comments');
-            console.log(comments);
             try {
                 store.commit('setCommentsMutation', comments.data.comments);
                 store.commit('setDeepMutation', comments.data.deep);
                 store.commit('setLoadingMutation', false);
+                store.commit('setPageLoaded', true);
             } catch(e) {
                 console.log(e);
             }
@@ -71,8 +75,10 @@ export default {
             return state.responseStatus;
         },
         getDeep(state) {
-            console.log('deep', state.deep);
             return state.deep;
+        },
+        getPageLoaded(state) {
+            return state.pageLoaded;
         }
     }
 }

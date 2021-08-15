@@ -56,6 +56,11 @@
                     )
                     this.$v.comment.$model = '';
                     this.$v.$reset();
+                    const forms = document.querySelectorAll('.replyForm')
+                    forms.forEach(function(form) {
+                        form.classList.add('hide')
+                    })
+                    
                 }
             },
             closeForm(event) {
