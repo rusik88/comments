@@ -1913,15 +1913,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      deep: 10,
       counter: 1
     };
   },
@@ -1941,7 +1938,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.getters.loadingComment;
     },
     getDeep: function getDeep() {
-      return this.$store.getters.deep;
+      return this.$store.getters.getDeep;
     }
   }
 });
@@ -1986,14 +1983,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      comment: '',
-      form: {}
+      comment: ''
     };
+  },
+  props: {
+    parent_id: Number
   },
   validations: {
     comment: {
@@ -2009,11 +2010,14 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.$v.$invalid) {
         this.$store.dispatch('AddCommentAction', {
           comment: this.$v.comment.$model,
-          parent_id: 0
+          parent_id: this.parent_id
         });
         this.$v.comment.$model = '';
         this.$v.$reset();
       }
+    },
+    closeForm: function closeForm(event) {
+      event.target.closest('.replyForm').classList.add('hide');
     }
   },
   computed: {
@@ -2039,6 +2043,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _AddCommentFormComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddCommentFormComponent */ "./resources/js/components/blocks/AddCommentFormComponent.vue");
 //
 //
 //
@@ -2058,6 +2063,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "child",
   props: {
@@ -2065,6 +2077,14 @@ __webpack_require__.r(__webpack_exports__);
     treeData: Object,
     deep: Number,
     counter: Number
+  },
+  components: {
+    AddCommentForm: _AddCommentFormComponent__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  methods: {
+    triggerForm: function triggerForm(event) {
+      event.target.nextElementSibling.classList.remove('hide');
+    }
   },
   mounted: function mounted() {
     console.log();
@@ -2085,6 +2105,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _CommentsChildComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CommentsChildComponent */ "./resources/js/components/blocks/CommentsChildComponent.vue");
+/* harmony import */ var _AddCommentFormComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddCommentFormComponent */ "./resources/js/components/blocks/AddCommentFormComponent.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2107,6 +2134,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CommentsComponent",
   props: {
@@ -2115,7 +2143,13 @@ __webpack_require__.r(__webpack_exports__);
     counter: Number
   },
   components: {
-    CommentsChild: _CommentsChildComponent__WEBPACK_IMPORTED_MODULE_0__.default
+    CommentsChild: _CommentsChildComponent__WEBPACK_IMPORTED_MODULE_0__.default,
+    AddCommentForm: _AddCommentFormComponent__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  methods: {
+    triggerForm: function triggerForm(event) {
+      event.target.nextElementSibling.classList.remove('hide');
+    }
   },
   mounted: function mounted() {}
 });
@@ -2322,7 +2356,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   state: {
     comments: {},
     loadingComment: true,
-    deep: 0,
+    deep: false,
     message: false,
     responseStatus: false
   },
@@ -2425,6 +2459,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return state.responseStatus;
     },
     getDeep: function getDeep(state) {
+      console.log('deep', state.deep);
       return state.deep;
     }
   }
@@ -6894,6 +6929,30 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MainComponent.vue?vue&type=style&index=0&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MainComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.commentText {\n    margin-bottom:10px;\n}\n.comment {\n    margin-bottom:28px;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/blocks/CommentsComponent.vue?vue&type=style&index=0&lang=css&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/blocks/CommentsComponent.vue?vue&type=style&index=0&lang=css& ***!
@@ -6911,7 +6970,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.tree .comment-block {\n    padding-left: 20px;\n}\n.tree .review {\n    margin: 15px 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.tree .comment-block {\n    padding-left: 20px;\n}\n.tree .review {\n    margin: 15px 0;\n}\n.hide {\n    display:none;\n}\n.show {\n    display:block;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38748,6 +38807,36 @@ try {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MainComponent.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MainComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MainComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MainComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MainComponent.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MainComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MainComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/blocks/CommentsComponent.vue?vue&type=style&index=0&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/blocks/CommentsComponent.vue?vue&type=style&index=0&lang=css& ***!
@@ -39169,15 +39258,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _MainComponent_vue_vue_type_template_id_3ee370e9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MainComponent.vue?vue&type=template&id=3ee370e9& */ "./resources/js/components/MainComponent.vue?vue&type=template&id=3ee370e9&");
 /* harmony import */ var _MainComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MainComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/MainComponent.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _MainComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MainComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/MainComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
   _MainComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _MainComponent_vue_vue_type_template_id_3ee370e9___WEBPACK_IMPORTED_MODULE_0__.render,
   _MainComponent_vue_vue_type_template_id_3ee370e9___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -39508,6 +39599,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/MainComponent.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/MainComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MainComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MainComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/MainComponent.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/blocks/CommentsComponent.vue?vue&type=style&index=0&lang=css&":
 /*!***********************************************************************************************!*\
   !*** ./resources/js/components/blocks/CommentsComponent.vue?vue&type=style&index=0&lang=css& ***!
@@ -39725,7 +39829,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  _c("addCommentForm"),
+                  _c("addCommentForm", { attrs: { parent_id: 0 } }),
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
@@ -39734,13 +39838,15 @@ var render = function() {
                         "div",
                         { staticClass: "card-body" },
                         [
-                          _c("comments", {
-                            attrs: {
-                              "tree-data": _vm.getCommentsData,
-                              deep: _vm.deep,
-                              counter: _vm.counter
-                            }
-                          })
+                          _vm.getDeep > 0
+                            ? _c("comments", {
+                                attrs: {
+                                  "tree-data": _vm.getCommentsData,
+                                  deep: _vm.getDeep,
+                                  counter: _vm.counter
+                                }
+                              })
+                            : _vm._e()
                         ],
                         1
                       )
@@ -39800,7 +39906,11 @@ var render = function() {
       }
     },
     [
-      _c("h3", [_vm._v("Добавить комментарий")]),
+      _vm.parent_id == 0
+        ? _c("h3", [_vm._v("Добавить комментарий")])
+        : _c("h3", [
+            _vm._v("Ответ на комментарий с ID " + _vm._s(_vm.parent_id))
+          ]),
       _vm._v(" "),
       _vm.getMessage
         ? _c("message", {
@@ -39875,6 +39985,14 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "text-right" }, [
+        _vm.parent_id > 0
+          ? _c(
+              "button",
+              { staticClass: "btn btn-danger", on: { click: _vm.closeForm } },
+              [_vm._v("Закрыть")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
         _c(
           "button",
           {
@@ -39913,12 +40031,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "comment" }, [
     _c("div", { staticClass: "media-body media-body-main" }, [
-      _c("div", { staticClass: "review" }, [
+      _c("div", { staticClass: "comment" }, [
         _c("h5", { staticClass: "mt-0" }, [
           _vm._v(
             "\n                " + _vm._s(_vm.node.id) + ". \n                "
           ),
-          _c("span", { staticClass: "reviewDate" }, [
+          _c("span", { staticClass: "commentDate" }, [
             _vm._v(
               _vm._s(_vm._f("moment")(_vm.node.created_at, "DD.MM.YYYY H:mm"))
             )
@@ -39929,7 +40047,27 @@ var render = function() {
           _vm._v(
             "\n                " + _vm._s(_vm.node.comment) + "\n            "
           )
-        ])
+        ]),
+        _vm._v(" "),
+        _vm.deep > _vm.counter
+          ? _c("div", { staticClass: "commentReply" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-primary",
+                  on: { click: _vm.triggerForm }
+                },
+                [_vm._v("Ответить")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "replyForm hide" },
+                [_c("AddCommentForm", { attrs: { parent_id: _vm.node.id } })],
+                1
+              )
+            ])
+          : _vm._e()
       ])
     ]),
     _vm._v(" "),
@@ -40001,7 +40139,27 @@ var render = function() {
                     _vm._s(item.comment) +
                     "\n                    "
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              _vm.deep > _vm.counter
+                ? _c("div", { staticClass: "commentReply" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "commentReply btn btn-sm btn-primary",
+                        on: { click: _vm.triggerForm }
+                      },
+                      [_vm._v("Ответить")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "replyForm hide" },
+                      [_c("AddCommentForm", { attrs: { parent_id: item.id } })],
+                      1
+                    )
+                  ])
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),

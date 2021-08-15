@@ -6,7 +6,7 @@ export default {
     state: {
         comments: {},
         loadingComment: true,
-        deep: 0,
+        deep: false,
         message: false,
         responseStatus: false
     },
@@ -71,6 +71,7 @@ export default {
             return state.responseStatus;
         },
         getDeep(state) {
+            console.log('deep', state.deep);
             return state.deep;
         }
     }

@@ -8,15 +8,13 @@
                             <div class="card">
                                 <div class="card-header">Комментарии</div>
                                 <div class="container-fluid">
-                                    <div class="row">
-
-                                    </div>
+                                    <div class="row"></div>
                                 </div>
                                 <hr>
-                                <addCommentForm />
+                                <addCommentForm :parent_id="0" />
                                 <hr>
                                 <div v-if="!loadingComment" class="card-body" >
-                                    <comments  :tree-data="getCommentsData" :deep="deep" :counter="counter"></comments>
+                                    <comments v-if="getDeep > 0"  :tree-data="getCommentsData" :deep="getDeep" :counter="counter"></comments>
                                 </div>
                                 <loading v-else></loading>
                             </div>
@@ -36,7 +34,6 @@
     export default {
         data: function() {
             return {
-                deep: 10,
                 counter: 1
             }
         },
@@ -56,8 +53,17 @@
                 return this.$store.getters.loadingComment;
             },
             getDeep() {
-                return this.$store.getters.deep;
+                return this.$store.getters.getDeep;
             },
         }
     }
 </script>
+
+<style>
+    .commentText {
+        margin-bottom:10px;
+    }
+    .comment {
+        margin-bottom:28px;
+    }
+</style>

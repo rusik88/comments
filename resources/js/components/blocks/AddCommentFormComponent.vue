@@ -1,6 +1,7 @@
 <template>
     <form action="" method="POST" id="CommentForm" class="col col-lg-12 mt-4 mb-3" @submit.prevent="onSubmit">                         
-        <h3>Добавить комментарий</h3>
+        <h3 v-if="parent_id == 0">Добавить комментарий</h3>
+        <h3 v-else>Ответ на комментарий с ID {{ parent_id }}</h3>
         <message v-if="getMessage" :message="getMessage" :status="getResponseStatus"></message>
         <div v-if="$v.comment.$dirty">
             <hr v-if="$v.$invalid">
@@ -18,6 +19,7 @@
                 name="comment"  class="form-control"  rows="3" placeholder="Комментарий"></textarea>
         </div>
         <div class="text-right">
+            <button v-if="parent_id > 0" v-on:click="closeForm" class="btn btn-danger">Закрыть</button>
             <button  type="submit" :disabled="this.$v.$invalid" class="btn btn-primary">Добавить</button>
         </div>
     </form>
@@ -30,8 +32,10 @@
         data() {
             return {
                 comment: '',
-                form: {}
             }
+        },
+        props: {
+            parent_id: Number,
         },
         validations: {
             comment: {
@@ -47,12 +51,15 @@
                 if(!this.$v.$invalid) { 
                     this.$store.dispatch('AddCommentAction', {
                             comment: this.$v.comment.$model,
-                            parent_id: 0
+                            parent_id: this.parent_id 
                         }
                     )
                     this.$v.comment.$model = '';
                     this.$v.$reset();
                 }
+            },
+            closeForm(event) {
+                event.target.closest('.replyForm').classList.add('hide')
             }
         },
         computed: {

@@ -7,7 +7,7 @@ use App\Interfaces\RepositoryInterface;
 class CommentRepository implements RepositoryInterface {
 
     /**
-     * Get all comments
+     * Get all comments by order DESC parent comment
      *
      * @return array App\Models\Comment
      */
@@ -27,5 +27,15 @@ class CommentRepository implements RepositoryInterface {
             'comment'   => $post['comment'],
             'parent_id' => $post['parent_id']
         ]);
+    }
+
+    /**
+     * Get all comments
+     *
+     * @return array App\Models\Comment
+     */
+
+    public function all_r() {
+        return Comment::all(); 
     }
 }

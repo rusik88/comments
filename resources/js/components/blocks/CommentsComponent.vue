@@ -8,6 +8,12 @@
                         <div class="commentText">
                             {{ item.comment }}
                         </div>
+                        <div class="commentReply" v-if="deep > counter">
+                            <button v-on:click="triggerForm" class="commentReply btn btn-sm btn-primary">Ответить</button>
+                            <div class="replyForm hide">
+                                <AddCommentForm :parent_id="item.id" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="comment-block" v-if="treeData[item.id] && treeData[item.id].length && deep > counter">
@@ -21,6 +27,7 @@
 
 <script>
     import CommentsChild from "./CommentsChildComponent";
+    import AddCommentForm from "./AddCommentFormComponent";
     export default {
         name: "CommentsComponent",
         props: {
@@ -29,7 +36,13 @@
             counter: Number,
         },
         components: {
-            CommentsChild
+            CommentsChild,
+            AddCommentForm
+        },
+        methods: {
+            triggerForm: function(event) {
+                event.target.nextElementSibling.classList.remove('hide')
+            }
         },
         mounted() {
             
@@ -43,5 +56,11 @@
     }
     .tree .review {
         margin: 15px 0;
+    }
+    .hide {
+        display:none;
+    }
+    .show {
+        display:block;
     }
 </style>
